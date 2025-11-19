@@ -13,7 +13,7 @@ const { PositionsModel } = require("./Models/PositionsModel");
 const { OrdersModel } = require("./Models/OrdersModel");
 
 // middlewares
-const { protect } = require("./Middlewares/AuthMiddleware");
+const { protect } = require("./Middlewares/authMiddleware");
 
 
 // Auth Route

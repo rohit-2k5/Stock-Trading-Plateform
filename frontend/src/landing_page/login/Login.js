@@ -4,12 +4,12 @@ import axios from "axios";
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
 
-  // 🔹 Redirect if already logged in
+  // Redirect if already logged in
   useEffect(() => {
     const checkAuth = async () => {
       try {
         await axios.get("http://localhost:3002/allHoldings", { withCredentials: true });
-        window.location.href = "http://localhost:3000/"; // ✅ Go to dashboard
+        window.location.href = "http://localhost:3001/"; // ✅ Go to dashboard
       } catch {
         console.log("Not logged in"); // stays on login
       }
@@ -35,7 +35,7 @@ const Login = () => {
     console.log("➡️ API Response:", res.data);
 
     if (res.data.success) {
-      window.location.href = "http://localhost:3000";
+      window.location.href = "http://localhost:3001/"; // Redirect to dashboard
     } else {
       alert(res.data.message);
     }

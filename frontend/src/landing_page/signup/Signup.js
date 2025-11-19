@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+  import axios from "axios";
 
 const Signup = () => {
   const [data, setData] = useState({ email: "", username: "", password: "" });
@@ -11,7 +11,7 @@ const Signup = () => {
         // Check if the user is already authenticated
         await axios.get("http://localhost:3002/allHoldings", { withCredentials: true });
         // ✅ Redirect directly to the dashboard app
-        window.location.href = "http://localhost:3000";
+        window.location.href = "http://localhost:3001/";
       } catch {
         // user not logged in, stay on signup page
       }
@@ -33,7 +33,7 @@ const Signup = () => {
       
       if (res.data.success) {
         // ✅ Go directly to dashboard after successful signup
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "http://localhost:3001/";
       } else {
         alert(res.data.message);
       }

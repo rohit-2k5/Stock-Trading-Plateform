@@ -1,6 +1,7 @@
 const User = require("../Models/UsersModel");  // or UserModel if renamed
 const { createSecretToken } = require("../util/SecretToken");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 module.exports.Signup = async (req, res, next) => {
   try {
@@ -15,9 +16,7 @@ module.exports.Signup = async (req, res, next) => {
       withCredentials: true,
       httpOnly: false,
     });
-    res
-      .status(201)
-      .json({ message: "User signed in successfully", success: true, user });
+    res.status(201).json({ message: "User signed in successfully", success: true, user });
     next();
   } catch (error) {
     console.error(error);
@@ -67,7 +66,7 @@ module.exports.checkUser = (req, res) => {
     return res.json({ loggedIn: false });
   }
 
-  jwt.verify(token, process.env.TOKEN_KEY, (err, decodedToken) => {
+  jwt.verify(token, process.env.TOKEN_KEY || "SECRET_KEY", (err, decodedToken) => {
     if (err) {
       return res.json({ loggedIn: false });
     } else {
@@ -84,7 +83,7 @@ module.exports.protect = (req, res, next) => {
       return res.status(401).json({ message: "Not authorized, no token" });
     }
 
-    jwt.verify(token, process.env.TOKEN_KEY, (err, decoded) => {
+    jwt.verify(token, process.env.TOKEN_KEY || "SECRET_KEY", (err, decoded) => {
       if (err) {
         return res.status(401).json({ message: "Token is not valid" });
       }
@@ -100,9 +99,8 @@ module.exports.protect = (req, res, next) => {
 module.exports.Logout = (req, res) => {
   // Clear the token cookie by setting it empty with very short expiry
   res.cookie("token", "", {
-    httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    withCredentials: true,
+    httpOnly: false,
     maxAge: 1,
   });
   res.json({ success: true, message: "Logged out successfully" });

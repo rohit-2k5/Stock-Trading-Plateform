@@ -8,7 +8,7 @@ module.exports.protect = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.TOKEN_KEY);
+    const decoded = jwt.verify(token, process.env.TOKEN_KEY || "SECRET_KEY");
     req.user = decoded; // attach user info for later use
     next();
   } catch (error) {
