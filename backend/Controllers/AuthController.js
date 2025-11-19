@@ -15,6 +15,9 @@ module.exports.Signup = async (req, res, next) => {
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
+      secure: true, // Required for HTTPS
+      sameSite: "none", // Required for cross-domain cookies
+      maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days
     });
     res.status(201).json({ message: "User signed in successfully", success: true, user });
     next();
@@ -49,6 +52,9 @@ module.exports.Login = async (req, res, next) => {
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
+      secure: true, // Required for HTTPS
+      sameSite: "none", // Required for cross-domain cookies
+      maxAge: 3 * 24 * 60 * 60 * 1000, // 3 days
     });
 
     res
@@ -101,6 +107,8 @@ module.exports.Logout = (req, res) => {
   res.cookie("token", "", {
     withCredentials: true,
     httpOnly: false,
+    secure: true,
+    sameSite: "none",
     maxAge: 1,
   });
   res.json({ success: true, message: "Logged out successfully" });

@@ -9,19 +9,25 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("https://stock-trading-plateform-backend.onrender.com/allHoldings", { withCredentials: true });
+        console.log("🔍 Checking authentication...");
+        const response = await axios.get("https://stock-trading-plateform-backend.onrender.com/allHoldings", { withCredentials: true });
+        console.log("✅ Authentication successful:", response.data);
         setAuthenticated(true);
-      } catch {
+      } catch (error) {
+        console.log("❌ Authentication failed:", error.response?.status, error.response?.data);
         setAuthenticated(false);
+        // Redirect to external login page
+        window.location.href = "https://stock-trading-plateform-frontend.onrender.com/login";
+        return;
       }
       setLoading(false);
     };
     checkAuth();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div>Loading...</div>;
 
-  return authenticated ? children : <Navigate to="https://stock-trading-plateform-frontend.onrender.com/login" />;
+  return authenticated ? children : null;
 };
 
 export default ProtectedRoute;
