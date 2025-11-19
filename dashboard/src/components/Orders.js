@@ -8,7 +8,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const result = await axios.get("http://localhost:3002/allOrders", {
+        const result = await axios.get("https://stock-trading-plateform-backend.onrender.com/allOrders", {
           withCredentials: true, // ✅ send cookie for authentication
         });
         setAllOrders(result.data);
@@ -18,7 +18,7 @@ const Orders = () => {
         // If unauthorized, redirect to login page
         if (err.response && err.response.status === 401) {
           alert("⚠️ You must be logged in to view your orders.");
-          window.location.href = "http://localhost:3001/login";
+          window.location.href = "https://stock-trading-plateform-frontend.onrender.com/login";
         }
       }
     };

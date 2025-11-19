@@ -9,9 +9,9 @@ const Signup = () => {
     const checkAuth = async () => {
       try {
         // Check if the user is already authenticated
-        await axios.get("http://localhost:3002/allHoldings", { withCredentials: true });
+        await axios.get("https://stock-trading-plateform-backend.onrender.com/allHoldings", { withCredentials: true });
         // ✅ Redirect directly to the dashboard app
-        window.location.href = "http://localhost:3001/";
+        window.location.href = "https://stock-trading-plateform-dashboard.onrender.com/";
       } catch {
         // user not logged in, stay on signup page
       }
@@ -27,13 +27,13 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:3002/signup", data, {
+      const res = await axios.post("https://stock-trading-plateform-backend.onrender.com/signup", data, {
         withCredentials: true,
       });
       
       if (res.data.success) {
         // ✅ Go directly to dashboard after successful signup
-        window.location.href = "http://localhost:3001/";
+        window.location.href = "https://stock-trading-plateform-dashboard.onrender.com/";
       } else {
         alert(res.data.message);
       }

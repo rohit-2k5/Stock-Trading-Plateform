@@ -11,7 +11,7 @@ function Navbar() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("http://localhost:3002/allHoldings", {
+        await axios.get("https://stock-trading-plateform-backend.onrender.com/allHoldings", {
           withCredentials: true,
         });
         setIsLoggedIn(true); // user is logged in

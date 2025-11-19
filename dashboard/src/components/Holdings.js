@@ -12,7 +12,7 @@ const Holdings = () => {
   
   useEffect(() => {
   axios
-    .get("http://localhost:3002/allHoldings", {
+    .get("https://stock-trading-plateform-backend.onrender.com/allHoldings", {
       withCredentials: true, // ✅ send cookies (session/JWT)
     })
     .then((res) => {
@@ -21,7 +21,7 @@ const Holdings = () => {
     .catch((err) => {
       console.error("❌ Error fetching holdings:", err);
       alert("You are not logged in! Redirecting to login...");
-      window.location.href = "http://localhost:3001/login"; // redirect to frontend login
+      window.location.href = "https://stock-trading-plateform-frontend.onrender.com/login"; // redirect to frontend login
     });
 }, []);
 

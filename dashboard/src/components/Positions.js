@@ -6,7 +6,7 @@ const Positions = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/allPositions", {
+      .get("https://stock-trading-plateform-backend.onrender.com/allPositions", {
         withCredentials: true, // ✅ send cookies for authentication
       })
       .then((result) => {
@@ -15,7 +15,7 @@ const Positions = () => {
       .catch((err) => {
         console.error("❌ Error fetching positions:", err);
         alert("You are not logged in! Redirecting to login...");
-        window.location.href = "http://localhost:3001/login"; // redirect to login
+        window.location.href = "https://stock-trading-plateform-frontend.onrender.com/login"; // redirect to login
       });
   }, []);
 

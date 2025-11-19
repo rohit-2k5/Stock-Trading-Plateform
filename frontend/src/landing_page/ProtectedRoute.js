@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
     const checkAuth = async () => {
       try {
         // Ping any protected API to verify token
-        await axios.get("http://localhost:3002/allHoldings", { withCredentials: true });
+        await axios.get("https://stock-trading-plateform-backend.onrender.com/allHoldings", { withCredentials: true });
         setIsAuthenticated(true);
       } catch (err) {
         setIsAuthenticated(false);

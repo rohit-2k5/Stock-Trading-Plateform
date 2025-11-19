@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("http://localhost:3002/allHoldings", { withCredentials: true });
+        await axios.get("https://stock-trading-plateform-backend.onrender.com/allHoldings", { withCredentials: true });
         setAuthenticated(true);
       } catch {
         setAuthenticated(false);
@@ -21,7 +21,7 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) return <p>Loading...</p>;
 
-  return authenticated ? children : <Navigate to="http://localhost:3001/login" />;
+  return authenticated ? children : <Navigate to="https://stock-trading-plateform-frontend.onrender.com/login" />;
 };
 
 export default ProtectedRoute;

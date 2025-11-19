@@ -17,8 +17,8 @@ const Menu = () => {
   // 🔹 Logout function
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:3002/logout", {}, { withCredentials: true });
-      window.location.href = "http://localhost:3001/login"; // redirect to login page in frontend
+      await axios.post("https://stock-trading-plateform-backend.onrender.com/logout", {}, { withCredentials: true });
+      window.location.href = "https://stock-trading-plateform-frontend.onrender.com/login"; // redirect to login page in frontend
     } catch (err) {
       console.error("Logout failed:", err);
       alert("⚠️ Something went wrong during logout!");

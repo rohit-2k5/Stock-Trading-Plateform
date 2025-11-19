@@ -26,7 +26,12 @@ const app = express();
 
 // Middlewares
 app.use(cors({
-  origin: ["http://localhost:3001", "http://localhost:3000"],   // so frontend can call APIs
+  origin: [
+    "https://stock-trading-plateform-frontend.onrender.com",
+    "https://stock-trading-plateform-dashboard.onrender.com",
+    "http://localhost:3000", // for local development
+    "http://localhost:3001"  // for local development
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));

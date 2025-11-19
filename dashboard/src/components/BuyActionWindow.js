@@ -13,7 +13,7 @@ const BuyActionWindow = ({ uid }) => {
   const handleBuyClick = async () => {
     try {
       await axios.post(
-        "http://localhost:3002/newOrder",
+        "https://stock-trading-plateform-backend.onrender.com/newOrder",
         {
           name: uid,
           qty: stockQuantity,
@@ -30,7 +30,7 @@ const BuyActionWindow = ({ uid }) => {
       console.error("❌ Order error:", error);
       alert("You are not logged in! Please login to place orders.");
       // Optional redirect to login page
-      window.location.href = "http://localhost:3001/login";
+      window.location.href = "https://stock-trading-plateform-frontend.onrender.com/login";
     }
   };
 
